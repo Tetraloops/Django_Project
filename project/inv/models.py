@@ -36,8 +36,21 @@ class inv_warehouse_shelf(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
     
-class inv_inventory_categories(models.Model):
+class inv_category(models.Model):
     inv_category_id = models.AutoField(primary_key=True)
+    org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
+    loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
+    inv_category_code = models.CharField(max_length= 30)
+    inv_category_name = models.CharField(max_length= 60)
+    parent_inv_category_id = models.CharField(max_length=30)    #Recursive Table
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
+
+class inv_category_sets(models.Model):
+    inv_category_set_id = models.AutoField(primary_key=True)
+    inv_category_id = models.ForeignKey('inv_category', on_delete=models.CASCADE)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     inv_category_code = models.CharField(max_length= 30)
@@ -52,7 +65,7 @@ class inv_inventory(models.Model):
     inv_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
-    inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
     inventory_code = models.CharField(max_length=30)
     inventory_name = models.CharField(max_length= 60)
     inventory_type = models.CharField(max_length=30)    #Inventory Type or Item Type - Select from Lookup Table
