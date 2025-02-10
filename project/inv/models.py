@@ -64,12 +64,13 @@ class inv_inventory(models.Model):
     warehouse_zone_id = models.ForeignKey(inv_warehouse_zone, on_delete=models.CASCADE)
     warehouse_shelf_id = models.ForeignKey(inv_warehouse_shelf, on_delete=models.CASCADE)
     costing_method = models.CharField(max_length=30)    #Select from Lookup Table
-    inventory_parameters = models.CharField(max_length=30)    #Select from Lookup Table
+    minimum_order_qty = models.IntegerField()    #The smallest quantity of an item that can be ordered.
+    maximum_order_qty = models.IntegerField()    #The largest quantity of an item that can be ordered.
+    safety_stock = models.IntegerField()        #The minimum level of inventory that must be maintained to prevent stockouts.
     manufacturing_date = models.DateTimeField()
     expiry_date = models.DateField()
     base_unit_qty = models.IntegerField()
     base_uom_id = models.ForeignKey('fnd.fnd_unit_of_measure', on_delete=models.CASCADE)
-    inventory_status = models.CharField(max_length=30)
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
