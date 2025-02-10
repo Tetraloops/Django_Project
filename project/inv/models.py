@@ -40,9 +40,9 @@ class inv_category(models.Model):
     inv_category_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
-    inv_category_code = models.CharField(max_length= 30)
-    inv_category_name = models.CharField(max_length= 60)
-    parent_inv_category_id = models.CharField(max_length=30)    #Recursive Table
+    category_code = models.CharField(max_length=30)    #Select from Lookup table as default categories or enter customized
+    category_name = models.CharField(max_length=60)
+    description = models.CharField(max_length=250)
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
@@ -50,9 +50,9 @@ class inv_category(models.Model):
 
 class inv_category_sets(models.Model):
     inv_category_set_id = models.AutoField(primary_key=True)
-    inv_category_id = models.ForeignKey('inv_category', on_delete=models.CASCADE)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey('inv_category', on_delete=models.CASCADE)
     inv_category_code = models.CharField(max_length= 30)
     inv_category_name = models.CharField(max_length= 60)
     parent_inv_category_id = models.CharField(max_length=30)    #Recursive Table
