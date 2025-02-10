@@ -227,7 +227,7 @@ class gl_transaction_line(models.Model):
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     transaction_batch_id = models.ForeignKey(gl_transaction_batch, on_delete=models.CASCADE)
     trans_line_date = models.DateField()
-    gl_transaction_code = models.CharField(max_length=30)    #select from fnd_transaction_type Table
+    transaction_type = models.CharField(max_length=20)    #select from fnd_transaction_type Table
     currency_id = models.ForeignKey('fnd.fnd_currencies', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
