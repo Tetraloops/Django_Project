@@ -8,7 +8,7 @@ class inv_warehouse(models.Model):
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     warehouse_code = models.CharField(max_length=30)
     warehouse_name = models.CharField(max_length=60)
-    warehouse_location = models.CharField(max_length=30)
+    location_id = models.ForeignKey(hr_org_location, on_delete=models.CASCADE)
     shipping_address_line = models.CharField(max_length=300)
     city_id = models.ForeignKey('fnd.fnd_cities', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
@@ -37,12 +37,12 @@ class inv_warehouse_shelf(models.Model):
     last_updation_date = models.DateTimeField()
     
 class inv_inventory_categories(models.Model):
-    inv_categories_id = models.AutoField(primary_key=True)
+    inv_category_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     inv_category_code = models.CharField(max_length= 30)
     inv_category_name = models.CharField(max_length= 60)
-    parent_inv_category_code = models.CharField(max_length=30)
+    parent_inv_category_id = models.CharField(max_length=30)    #Recursive Table
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
@@ -55,7 +55,7 @@ class inv_inventory(models.Model):
     inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
     inventory_code = models.CharField(max_length=30)
     inventory_name = models.CharField(max_length= 60)
-    inventory_type = models.CharField(max_length=30)
+    inventory_type = models.CharField(max_length=30)    #Select from 
     costing_method = models.CharField(max_length=30)
     manufacturing_date = models.DateTimeField()
     expiry_date = models.DateField()
