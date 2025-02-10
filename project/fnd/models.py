@@ -165,5 +165,14 @@ class fnd_transaction_type(models.Model):
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()    
-    
+
+class fnd_inv_category(models.Model):
+    inv_category_id = models.AutoField(primary_key=True)
+    category_code = models.CharField(max_length=30)
+    category_name = models.CharField(max_length=60)
+    description = models.CharField(max_length=250)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
 
