@@ -55,7 +55,9 @@ class inv_inventory(models.Model):
     inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
     inventory_code = models.CharField(max_length=30)
     inventory_name = models.CharField(max_length= 60)
-    inventory_type = models.CharField(max_length=30)    #Select from 
+    inventory_type = models.CharField(max_length=30)    #Inventory Type or Item Type - Select from Lookup Table
+    stock_type = models.CharField(max_length=30)    #Select from Lookup Table
+    
     costing_method = models.CharField(max_length=30)
     manufacturing_date = models.DateTimeField()
     expiry_date = models.DateField()
