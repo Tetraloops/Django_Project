@@ -57,7 +57,6 @@ class inv_inventory(models.Model):
     inventory_name = models.CharField(max_length= 60)
     inventory_type = models.CharField(max_length=30)    #Inventory Type or Item Type - Select from Lookup Table
     stock_type = models.CharField(max_length=30)    #Select from Lookup Table
-    transaction_type = models.CharField(max_length=20)    #select from fnd_transaction_type Table
     inventory_status = models.CharField(max_length=30)    #Select from Lookup Table
     subinventories = models.CharField(max_length=30)    #Select from Lookup Table
     warehouse_id = models.ForeignKey(inv_warehouse, on_delete=models.CASCADE) #For example locator of item
@@ -213,7 +212,7 @@ class inv_wh_transaction_line(models.Model):
     wh_trans_line_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
-    transaction_type = models.CharField(max_length=30)
+    transaction_type = models.CharField(max_length=20)    #select from fnd_transaction_type Table
     transaction_date = models.DateField()
     party_id = models.ForeignKey(inv_parties, on_delete=models.CASCADE)
     invoice_number = models.IntegerField()
