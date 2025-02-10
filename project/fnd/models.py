@@ -158,7 +158,7 @@ class fnd_unit_of_measure(models.Model):
 
 class fnd_transaction_type(models.Model):
     application_id = models.ForeignKey(fnd_applications, on_delete=models.CASCADE)
-    transaction_code = models.CharField(max_length=20) (primary_key=True)
+    transaction_type = models.CharField(max_length=20) (primary_key=True)
     transaction_value = models.CharField(max_length=30)
     description = models.CharField(max_length=250)
    created_by = models.CharField(max_length=30)
