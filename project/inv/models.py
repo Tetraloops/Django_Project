@@ -57,13 +57,16 @@ class inv_inventory(models.Model):
     inventory_name = models.CharField(max_length= 60)
     inventory_type = models.CharField(max_length=30)    #Inventory Type or Item Type - Select from Lookup Table
     stock_type = models.CharField(max_length=30)    #Select from Lookup Table
-    
-    costing_method = models.CharField(max_length=30)
-    manufacturing_date = models.DateTimeField()
-    expiry_date = models.DateField()
-    warehouse_id = models.ForeignKey(inv_warehouse, on_delete=models.CASCADE)
+    transaction_type = models.CharField(max_length=20)    #select from fnd_transaction_type Table
+    inventory_status = models.CharField(max_length=30)    #Select from Lookup Table
+    subinventories = models.CharField(max_length=30)    #Select from Lookup Table
+    warehouse_id = models.ForeignKey(inv_warehouse, on_delete=models.CASCADE) #For example locator of item
     warehouse_zone_id = models.ForeignKey(inv_warehouse_zone, on_delete=models.CASCADE)
     warehouse_shelf_id = models.ForeignKey(inv_warehouse_shelf, on_delete=models.CASCADE)
+    costing_method = models.CharField(max_length=30)    #Select from Lookup Table
+    inventory_parameters = models.CharField(max_length=30)    #Select from Lookup Table
+    manufacturing_date = models.DateTimeField()
+    expiry_date = models.DateField()
     base_unit_qty = models.IntegerField()
     base_uom_id = models.ForeignKey('fnd.fnd_unit_of_measure', on_delete=models.CASCADE)
     inventory_status = models.CharField(max_length=30)
