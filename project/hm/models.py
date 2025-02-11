@@ -14,6 +14,8 @@ class hm_guest_profile(models.Model):
     last_name = models.CharField(max_length=30)
     mobile_no = models.CharField(max_length=20)
     address_line = models.CharField(max_length=300)
+    country_code = models.ForeignKey('fnd.fnd_territories', on_delete=models.CASCADE)
+    state_province_id = models.ForeignKey('fnd.fnd_state_province', on_delete=models.CASCADE)
     city_id = models.ForeignKey('fnd.fnd_cities', on_delete=models.CASCADE)
     gender = models.CharField(max_length=30)
     profession = models.CharField(max_length=30)
