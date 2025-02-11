@@ -175,3 +175,19 @@ class fnd_inv_category(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
+class fnd_party_class(models.Model):
+    party_class = models.CharField(max_length=30)    #Unique Key
+    description = models.CharField(max_length=250)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
+
+class fnd_party_subclass(models.Model):
+    party_class = models.CharField(max_length=30)
+    party_subclass = models.CharField(max_length=30)    #Unique Key
+    description = models.CharField(max_length=250)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
