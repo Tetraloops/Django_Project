@@ -133,14 +133,13 @@ class inv_packing_conversion(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-
 class inv_parties_profile(models.Model):
     parties_profile_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     party_code = models.CharField(max_length=30)
     party_name = models.CharField(max_length=60)
-    party_classification = models.Char_Field(max_length=30)
+    party_classification = models.Char_Field(max_length=30)    #Select from Lookup Table
     address_line = models.CharField(max_length=300)
     city_id = models.ForeignKey('fnd.fnd_cities', on_delete=models.CASCADE)
     active_flag = models.CharField(max_length=30)
