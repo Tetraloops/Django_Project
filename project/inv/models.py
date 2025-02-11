@@ -139,7 +139,8 @@ class inv_parties_profile(models.Model):
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     party_code = models.CharField(max_length=30)
     party_name = models.CharField(max_length=60)
-    party_classification = models.Char_Field(max_length=30)    #Select from Lookup Table
+    party_class = models.Char_Field(max_length=30)    #Select from fnd_party_class Table
+    party_subclass = models.Char_Field(max_length=30)    #Select from fnd_party_subclass Table
     address_line = models.CharField(max_length=300)
     city_id = models.ForeignKey('fnd.fnd_cities', on_delete=models.CASCADE)
     active_flag = models.CharField(max_length=30)
