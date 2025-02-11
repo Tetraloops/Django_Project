@@ -191,3 +191,34 @@ class fnd_party_subclass(models.Model):
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
+
+class fnd_regions(models.Model):
+    region_code = models.AutoField(primary_key=True)
+    region = models.CharField(max_length=30)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
+
+class fnd_subregions(models.Model):
+    region_code = models.ForeignKey(fnd_regions, on_delete=models.CASCADE)
+    subregion_code = models.AutoField(primary_key=True)
+    subregion = models.CharField(max_length=30)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
+
+class fnd_territories(models.Model):
+    country_code = models.AutoField(primary_key=True)
+    alpha_2 = models.CharField(max_length=2)
+    alpha_3 = models.CharField(max_length=3)
+    iso_3166-2 = models.CharField(max_length=15)
+    country_name = models.CharField(max_length=60)
+    region_code = models.ForeignKey(fnd_regions, on_delete=models.CASCADE)
+    subregion_code = models.AutoField(primary_key=True)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
+    
