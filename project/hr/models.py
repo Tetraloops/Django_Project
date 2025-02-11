@@ -42,6 +42,8 @@ class hr_org_address(models.Model):
     org_id = models.ForeignKey(hr_org_profile, on_delete=models.CASCADE)
     loc_id = models.ForeignKey(hr_org_location, on_delete=models.CASCADE)
     address_line = models.CharField(max_length=300)
+    country_code = models.ForeignKey('fnd.fnd_territories', on_delete=models.CASCADE)
+    state_province_id = models.ForeignKey('fnd.fnd_state_province', on_delete=models.CASCADE)
     city_id = models.ForeignKey('fnd.fnd_cities', on_delete=models.CASCADE)
     address_type = models.CharField(max_length=30)    #Select from Lookup table
     active_date = models.DateField()
