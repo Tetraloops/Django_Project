@@ -55,10 +55,10 @@ class inv_category_sets(models.Model):
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     inv_category_id = models.ForeignKey('inv_category', on_delete=models.CASCADE)
-    inv_category_code = models.CharField(max_length= 30)
-    inv_category_name = models.CharField(max_length= 60)
+    category_set_code = models.CharField(max_length= 30)
+    category_set_name = models.CharField(max_length= 60)
     description = models.CharField(max_length=250)
-    parent_inv_category_id = models.CharField(max_length=30)    #Recursive Table
+    parent_category_set_id = models.CharField(max_length=30)    #Recursive Table
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
