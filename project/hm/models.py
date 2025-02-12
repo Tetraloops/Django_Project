@@ -50,11 +50,10 @@ class res_reservation(models.Model):
 class evt_event_order(models.Model):
     event_order_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
-    event_name = models.CharField(max_length=30)
-    description = models.CharField(max_length=60)
-    inv_category_id = models.ForeignKey('inv.inv_categories', on_delete=models.CASCADE)
-    inv_category_set_id = models.ForeignKey('inv.inv_categories_set', on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey('inv.inv_category', on_delete=models.CASCADE)    #Example in Lookup Table EVENT_TYPE
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)    #Example in Lookup Table EVENTS
     inventory_id = models.ForeignKey('inv.inv_inventory', on_delete=models.CASCADE)
+    description = models.CharField(max_length=250)
     event_date_from = models.DateField()
     event_date_to = models.DateField()
     event_time_from = models.CharField(max_length=10)
@@ -66,12 +65,12 @@ class evt_event_order(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_event_schedule(models.Model):
+class evt_event_schedule(models.Model):
     event_schedule_id = models.AutoField(primary_key=True)
     event_order_id = models.ForeignKey(hm_event_order, on_delete=models.CASCADE)
     schedule_date = models.DateField()
     schedule_time = models.CharField(max_length=10)
-    entertainment = models.CharField(max_length=30)
+    entertainment = models.CharField(max_length=30)    #From Lookup Table
     entertainment_rate = models.IntegerField()
     inventory_packing_id = models.ForeignKey('inv.inv_inventory_packing', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
