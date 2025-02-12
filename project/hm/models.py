@@ -7,9 +7,9 @@ class hm_guest_profile(models.Model):
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     guest_code = models.CharField(max_length=20)
-    identifier = models.CharField(max_length=30)
+    guest_identifier = models.CharField(max_length=30)    #From Lookup Table as IDENTIFIER
     identifier_number = models.CharField(max_length=30)
-    solutation = models.CharField(max_length=30)
+    solutation = models.CharField(max_length=30)    #From Lookup Table
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     mobile_no = models.CharField(max_length=20)
@@ -17,9 +17,11 @@ class hm_guest_profile(models.Model):
     country_code = models.ForeignKey('fnd.fnd_territories', on_delete=models.CASCADE)
     state_province_id = models.ForeignKey('fnd.fnd_state_province', on_delete=models.CASCADE)
     city_id = models.ForeignKey('fnd.fnd_cities', on_delete=models.CASCADE)
-    gender = models.CharField(max_length=30)
-    profession = models.CharField(max_length=30)
-    party_id = models.ForeignKey('inv.inv_parties', on_delete=models.CASCADE)
+    gender = models.CharField(max_length=30)    #From Lookup Table
+    profession = models.CharField(max_length=30)    #From Lookup Table
+    nationality = models.CharField(max_length=30)    #From Lookup Table
+    language = models.CharField(max_length=30)    #From Lookup Table
+    party_id = models.ForeignKey('inv.inv_parties', on_delete=models.CASCADE)    #Company
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
