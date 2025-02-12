@@ -27,7 +27,7 @@ class hm_guest_profile(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_reservation(models.Model):
+class res_reservation(models.Model):
     reservation_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
@@ -47,7 +47,7 @@ class hm_reservation(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_event_order(models.Model):
+class res_event_order(models.Model):
     event_order_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
     event_name = models.CharField(max_length=30)
