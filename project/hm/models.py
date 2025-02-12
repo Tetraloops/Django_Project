@@ -47,7 +47,7 @@ class res_reservation(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class res_event_order(models.Model):
+class evt_event_order(models.Model):
     event_order_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
     event_name = models.CharField(max_length=30)
