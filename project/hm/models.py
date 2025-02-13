@@ -71,8 +71,8 @@ class evt_event_schedule(models.Model):
     schedule_date = models.DateField()
     schedule_time = models.CharField(max_length=10)
     inv_category_id = models.ForeignKey('inv.inv_category', on_delete=models.CASCADE)    #Example word ENTERTAINMENT
-    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)    #Entered by user or select default from fnd_entertainment_type Table
-    inventory_id = models.ForeignKey('inv.inv_inventory', on_delete=models.CASCADE)    #Entered by user or select default from fnd_entertainments Table
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)    #Entered by user or already selected default from fnd_entertainment_type Table in inv_category table
+    inventory_id = models.ForeignKey('inv.inv_inventory', on_delete=models.CASCADE)    #Entered by user or already selected default from fnd_entertainments Table in inv_inventory table
     entertainment_rate = models.IntegerField()
     inventory_packing_id = models.ForeignKey('inv.inv_inventory_packing', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
