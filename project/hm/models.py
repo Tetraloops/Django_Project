@@ -33,6 +33,10 @@ class res_reservation(models.Model):
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     reservation_number = models.IntegerField() #Unique Key
     reservation_date = models.DateField()
+    reservation_status = models.CharField(max_length=30)    #From Lookup Table
+    reservation_guarantees = models.CharField(max_length=30)    #From Lookup Table
+    source_group = models.CharField(max_length=30)    #From Lookup Table
+    source_codes = models.CharField(max_length=30)    #From Lookup Table
     no_of_room = models.IntegerField()
     no_of_events = models.IntegerField()
     block_required = models.CharField(max_length=30)
@@ -47,6 +51,13 @@ class res_reservation(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
+class res_reservation_status(models.Model):
+    reservation_id = models.ForeignKey(res_reservation, on_delete=models.CASCADE)
+    reservation_status = models.CharField(max_length=30)    #Update from res_reservation table
+    status_updation_date = models.DateTimeField()
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    
 class evt_event_order(models.Model):
     event_order_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
@@ -127,10 +138,10 @@ class res_reservation_detail(models.Model):
     pickup_flag = models.CharField(max_length=30)
     expected_arrival_date = models.DateField()
     expected_arrival_time = models.CharField(max_length=10)
-    travelling = models.CharField(max_length=30)
-    transportation = models.CharField(max_length=30)
+    travelling_mode = models.CharField(max_length=30)    #From Lookup Table
+    transportation = models.CharField(max_length=30)    #From Lookup Table
     transportation_no = models.CharField(max_length=20)
-    reservation_statis = models.CharField(max_length=30)
+    reservation_status = models.CharField(max_length=30)
     reservation_status_date = models.DateTimeField()
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
