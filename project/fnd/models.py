@@ -83,43 +83,6 @@ class fnd_lookup_values(models.Model):
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
-    
-class fnd_territories(models.Model):
-    territory_id = models.AutoField(primary_key=True)
-    country_code = models.IntegerField()
-    country_name = models.CharField(max_length=60)
-    alfa_2 = models.CharField(max_length=2)
-    alfa_3 = models.CharField(max_length=3)
-    iso_3166_2 = models.CharField(max_length=13)
-    region = models.CharField(max_length=10)
-    sub_region = models.CharField(max_length=35)
-    intermediate_region = models.CharField(max_length=20)
-    region_code = models.IntegerField()
-    sub_region_code = models.IntegerField()
-    intermediate_region_code = models.IntegerField()
-    created_by = models.CharField(max_length=30)
-    creation_date = models.dateTimeField()
-    last_updated_by = models.CharField(max_length=30)
-    last_updation_date = models.DateTimeField()  
-
-class fnd_state_province(models.Model):
-    state_id = models.AutoField(primary_key=True)
-    territories_id = models.ForeignKey(fnd_territories, on_delete=models.CASCADE)
-    state_province_name = models.CharField(max_length=60)
-    created_by = models.CharField(max_length=30)
-    creation_date = models.dateTimeField()
-    last_updated_by = models.CharField(max_length=30)
-    last_updation_date = models.DateTimeField()  
-
-class fnd_cities(models.Model):
-    city_id = models.AutoField(primary_key=True)
-    state_province_id = models.ForeignKey(fnd_state_province, on_delete=models.CASCADE)
-    city_name = models.CharField(max_length=60)
-    postal_code = models.CharField(max_length=30)
-    created_by = models.CharField(max_length=30)
-    creation_date = models.dateTimeField()
-    last_updated_by = models.CharField(max_length=30)
-    last_updation_date = models.DateTimeField()
 
 class fnd_territory_taxes(models.Model):
     territory_tax_id = models.AutoField(primary_key=True)
@@ -241,6 +204,22 @@ class fnd_cities(models.Model):
     city_name = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=30)
     description = models.CharField(max_length=250)
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()
+
+class fnd_entertainment_type(models.Model):
+    entertainment_type = models.CharField(max_length=30)    #Unique Key
+    created_by = models.CharField(max_length=30)
+    creation_date = models.dateTimeField()
+    last_updated_by = models.CharField(max_length=30)
+    last_updation_date = models.DateTimeField()  
+
+class fnd_entertainment_values(models.Model):
+    entertainment_type = models.CharField(max_length=30)
+    entertainment_value = models.CharField(max_length=30)    #Composite Primary key of (lookup_type and lookup_value)
+    description = models.CharField(max_length=60)
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
