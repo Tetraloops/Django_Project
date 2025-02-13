@@ -37,6 +37,8 @@ class res_reservation(models.Model):
     reservation_guarantees = models.CharField(max_length=30)    #From Lookup Table
     source_group = models.CharField(max_length=30)    #From Lookup Table
     source_codes = models.CharField(max_length=30)    #From Lookup Table
+    turnaway_group = models.CharField(max_length=30)    #From Lookup Table
+    turnaway_reasons = models.CharField(max_length=30)    #From Lookup Table
     no_of_room = models.IntegerField()
     no_of_events = models.IntegerField()
     block_required = models.CharField(max_length=30)
