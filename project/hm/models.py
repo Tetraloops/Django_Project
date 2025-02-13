@@ -80,7 +80,7 @@ class evt_event_schedule(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_event_food(models.Model):
+class evt_event_food(models.Model):
     event_food_id = models.AutoField(primary_key=True)
     event_schedule_id = models.ForeignKey(hm_event_schedule, on_delete=models.CASCADE)
     inv_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
@@ -91,17 +91,18 @@ class hm_event_food(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_complementory_services(models.Model):
+class res_complementory_services(models.Model):
     complementory_services_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
-    invevtory_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
     inventory_id = models.ForeignKey('inv.inv_inventory', on_delete=models.CASCADE)    
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_raservation_block(models.Model):
+class res_raservation_block(models.Model):
     reservation_block_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
     block_code = models.CharField(max_length=30)
@@ -111,7 +112,7 @@ class hm_raservation_block(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_reservation_detail(models.Model):
+class res_reservation_detail(models.Model):
     reservation_detail_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(hm_reservation, on_delete=models.CASCADE)
     guest_profile_id = models.ForeignKey(hm_guest_profile, on_delete=models.CASCADE)
@@ -136,12 +137,13 @@ class hm_reservation_detail(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_guest_arrival(models.Model):
+class ci_guest_arrival(models.Model):
     guest_arrival_id = models.AutoField(primary_key=True)
     reservation_id = models.ForeignKey(reservation, on_delete=models.CASCADE)
     check_in_flag = models.CharField(max_length=30)
     check_in_date = models.DateTimeField()
-    invevtory_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
     inventory_id = models.ForeignKey('inv.inv_inventory', on_delete=models.CASCADE)
     amenity_type = models.CharField(max_length=30)
     amenity_rate = models.ImageField()
@@ -159,7 +161,7 @@ class hm_guest_arrival(models.Model):
     last_updated_by = models.CharField(max_length=30)
     last_updation_date = models.DateTimeField()
 
-class hm_guest_ledger(models.Model):
+class ci_guest_ledger(models.Model):
     guest_ledger_id = models.AutoField(primary_key=True)
     guest_arrival_id = models.ForeignKey(hm_guest_arrival, on_delete=models.CASCADE)
     entry_date = models.DateField()
