@@ -65,7 +65,7 @@ class inv_category_sets(models.Model):
     last_updation_date = models.DateTimeField()
     
 class inv_inventory(models.Model):
-    inv_id = models.AutoField(primary_key=True)
+    inventory_id = models.AutoField(primary_key=True)
     org_id = models.ForeignKey('hr.hr_org_profile', on_delete=models.CASCADE)
     loc_id = models.ForeignKey('hr.hr_org_location', on_delete=models.CASCADE)
     inv_category_set_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
@@ -93,7 +93,9 @@ class inv_inventory(models.Model):
     
 class inv_inventory_coa_codes(models.Model):
     inv_coa_codes_id = models.AutoField(primary_key=True)
-    inventory_id = models.ForeignKey(hr_inventory, on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
+    inventory_id = models.ForeignKey(inv_inventory, on_delete=models.CASCADE)
     coa_code_combination = models.CharField(max_length=100)
     local_ledger_id = models.ForeignKey('fa.fa_local_ledger_coa', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
@@ -103,6 +105,8 @@ class inv_inventory_coa_codes(models.Model):
     
 class inv_inventory_taxes_applicable(models.Model):
     inv_taxes_app_id = models.AutoField(primary_key=True)
+    inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
     inventory_id = models.ForeignKey(inv_inventory, on_delete=models.CASCADE)
     tax_setup_line_id = models.ForeignKey('fa.fa_tax_setup_line', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
@@ -124,6 +128,7 @@ class inv_inventory_packing(models.Model):
 class inv_packing_conversion(models.Model):
     packing_conversion_id = models.AutoField(primary_key=True)
     inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
     inventory_id = models.ForeignKey(inv_inventory, on_delete=models.CASCADE)
     inventor_packing_id = models.ForeignKey(inv_inventory_packing, on_delete=models.CASCADE)
     contained_qty = models.IntegerField()
@@ -254,7 +259,8 @@ class inv_wh_transaction_line(models.Model):
 class inv_wh_transaction_detail(models.Model):
     wh_trans_detail_id = models.AutoField(primary_key=True)
     wh_transaction_line_id = models.ForeignKey(inv_wh_transaction_line, on_delete=models.CASCADE)
-    inventory_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey(inv_inventory_categories, on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
     inventory_id = models.ForeignKey(inv_inventory, on_delete=models.CASCADE)
     inventory_qty = models.IntegerField()
     inventory_rate = models.IntegerField()
