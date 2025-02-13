@@ -83,7 +83,8 @@ class evt_event_schedule(models.Model):
 class hm_event_food(models.Model):
     event_food_id = models.AutoField(primary_key=True)
     event_schedule_id = models.ForeignKey(hm_event_schedule, on_delete=models.CASCADE)
-    invevtory_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
+    inv_category_id = models.ForeignKey('inv.inv_inventory_categories', on_delete=models.CASCADE)
+    inv_category_set_id = models.ForeignKey('inv.inv_category_sets', on_delete=models.CASCADE)
     inventory_id = models.ForeignKey('inv.inv_inventory', on_delete=models.CASCADE)
     created_by = models.CharField(max_length=30)
     creation_date = models.dateTimeField()
